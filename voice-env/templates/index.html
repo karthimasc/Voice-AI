@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice AI Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="/static/marked.min.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">✦</div>
+                    <span>VoiceAI</span>
+                </div>
+            </div>
+            <button class="new-chat-btn" onclick="newChat()">
+                <span>+</span> New Chat
+            </button>
+            <div class="sidebar-section">
+                <p class="sidebar-label">Recent</p>
+                <div id="history-list"></div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="avatar">U</div>
+                    <span>User</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="main">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="model-badge">
+                    <span class="dot"></span>
+                    GPT-4o Mini
+                </div>
+                <div class="topbar-actions">
+                    <button class="icon-btn" title="Stop Speech" onclick="stopTTS()">⏹</button>
+                </div>
+            </header>
+
+            <!-- Chat Messages -->
+            <div class="chat-area" id="chat-box">
+                <div class="welcome">
+                    <div class="welcome-icon">✦</div>
+                    <h2>How can I help you today?</h2>
+                    <p>Speak or type your message below</p>
+                    <div class="suggestions">
+                        <button class="suggestion" onclick="useSuggestion(this)">📋 Summarize a document</button>
+                        <button class="suggestion" onclick="useSuggestion(this)">🔍 Search for information</button>
+                        <button class="suggestion" onclick="useSuggestion(this)">💡 Give me ideas</button>
+                        <button class="suggestion" onclick="useSuggestion(this)">🌐 Find useful links</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-wrapper">
+                <div class="input-box">
+                    <textarea id="text-input" placeholder="Message VoiceAI..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+                    <div class="input-actions">
+                        <button id="mic-btn" class="mic-btn" onclick="toggleMic()" title="Voice Input">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z"/>
+                            </svg>
+                        </button>
+                        <button id="send-btn" class="send-btn" onclick="sendText()" title="Send">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="status" class="status-bar"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
